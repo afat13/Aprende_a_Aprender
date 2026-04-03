@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
-import com.example.aprendeaaprender.ui.LoginScreen
-import com.example.aprendeaaprender.ui.SplashScreen
-import com.example.aprendeaaprender.ui.WelcomeScreen
+import com.example.aprendeaaprender.ui.*
 import com.example.aprendeaaprender.ui.theme.AprendeaAprenderTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,13 +24,32 @@ class MainActivity : ComponentActivity() {
                     )
                     "login" -> LoginScreen(
                         onLoginClick = { email, password ->
-                            // TODO: conectar Firebase Auth
+                            // TODO: Firebase Auth login
                         },
-                        onRegisterClick = { currentScreen = "register" }
+                        onRegisterClick = { currentScreen = "register" },
+                        onBackClick = { currentScreen = "welcome" }
                     )
-                    "register" -> {
-                        // TODO: pantalla de registro
-                    }
+                    "register" -> RegisterScreen(
+                        onRegisterClick = { nombres, apellidos, correo, password ->
+                            // TODO: Firebase Auth crear cuenta
+                            currentScreen = "verify"
+                        },
+                        onTermsClick = { },
+                        onBackClick = { currentScreen = "welcome" }
+                    )
+                    "verify" -> VerifyEmailScreen(
+                        onValidateClick = { code ->
+                            // TODO: verificar código
+                            currentScreen = "verified"
+                        },
+                        onResendClick = {
+                            // TODO: reenviar código
+                        },
+                        onBackClick = { currentScreen = "register" }
+                    )
+                    "verified" -> VerifiedScreen(
+                        onLoginClick = { currentScreen = "login" }
+                    )
                 }
             }
         }

@@ -24,7 +24,8 @@ import com.example.aprendeaaprender.ui.theme.*
 @Composable
 fun LoginScreen(
     onLoginClick: (String, String) -> Unit = { _, _ -> },
-    onRegisterClick: () -> Unit = {}
+    onRegisterClick: () -> Unit = {},
+    onBackClick: () -> Unit = {}
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -33,120 +34,136 @@ fun LoginScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(DarkBackground)
-            .padding(horizontal = 32.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Logo
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Logo Aprende a Aprender",
-            modifier = Modifier.size(100.dp)
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // Título
-        Text(
-            text = "Aprende a\nAprender",
-            fontSize = 26.sp,
-            fontWeight = FontWeight.Bold,
-            fontStyle = FontStyle.Italic,
-            color = CyanAccent,
-            textAlign = TextAlign.Center,
-            lineHeight = 32.sp
-        )
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        // Campo de correo
-        OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("Correo electrónico") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = CyanAccent,
-                unfocusedBorderColor = TextGray,
-                focusedLabelColor = CyanAccent,
-                cursorColor = CyanAccent,
-                focusedTextColor = TextWhite,
-                unfocusedTextColor = TextWhite
-            )
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Campo de contraseña
-        OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("Contraseña") },
-            singleLine = true,
-            visualTransformation = PasswordVisualTransformation(),
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = CyanAccent,
-                unfocusedBorderColor = TextGray,
-                focusedLabelColor = CyanAccent,
-                cursorColor = CyanAccent,
-                focusedTextColor = TextWhite,
-                unfocusedTextColor = TextWhite
-            )
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        // Olvidó contraseña
-        Text(
-            text = "¿Olvidaste tu contraseña?",
-            color = CyanLight,
-            fontSize = 13.sp,
-            modifier = Modifier
-                .align(Alignment.End)
-                .clickable { /* TODO */ }
-        )
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        // Botón de Login
-        Button(
-            onClick = { onLoginClick(email, password) },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(52.dp),
-            shape = RoundedCornerShape(12.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = CyanAccent,
-                contentColor = DarkBackground
-            )
+        // Flecha de regreso
+        IconButton(
+            onClick = onBackClick,
+            modifier = Modifier.padding(start = 8.dp, top = 16.dp)
         ) {
             Text(
-                text = "Iniciar Sesión",
-                fontSize = 16.sp,
+                text = "‹",
+                fontSize = 32.sp,
+                color = CyanAccent,
                 fontWeight = FontWeight.Bold
             )
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 32.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            // Logo
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo Aprende a Aprender",
+                modifier = Modifier.size(100.dp)
+            )
 
-        // Link de registro
-        Row {
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // Título
             Text(
-                text = "¿No tienes cuenta? ",
-                color = TextGray,
-                fontSize = 14.sp
-            )
-            Text(
-                text = "Regístrate",
-                color = CyanAccent,
-                fontSize = 14.sp,
+                text = "Aprende a\nAprender",
+                fontSize = 26.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable { onRegisterClick() }
+                fontStyle = FontStyle.Italic,
+                color = CyanAccent,
+                textAlign = TextAlign.Center,
+                lineHeight = 32.sp
             )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Campo de correo
+            OutlinedTextField(
+                value = email,
+                onValueChange = { email = it },
+                label = { Text("Correo electrónico") },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = CyanAccent,
+                    unfocusedBorderColor = TextGray,
+                    focusedLabelColor = CyanAccent,
+                    cursorColor = CyanAccent,
+                    focusedTextColor = TextWhite,
+                    unfocusedTextColor = TextWhite
+                )
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Campo de contraseña
+            OutlinedTextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("Contraseña") },
+                singleLine = true,
+                visualTransformation = PasswordVisualTransformation(),
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = CyanAccent,
+                    unfocusedBorderColor = TextGray,
+                    focusedLabelColor = CyanAccent,
+                    cursorColor = CyanAccent,
+                    focusedTextColor = TextWhite,
+                    unfocusedTextColor = TextWhite
+                )
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = "¿Olvidaste tu contraseña?",
+                color = CyanLight,
+                fontSize = 13.sp,
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .clickable { /* TODO */ }
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Botón de Login
+            Button(
+                onClick = { onLoginClick(email, password) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(52.dp),
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = CyanAccent,
+                    contentColor = DarkBackground
+                )
+            ) {
+                Text(
+                    text = "Iniciar Sesión",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Row {
+                Text(
+                    text = "¿No tienes cuenta? ",
+                    color = TextGray,
+                    fontSize = 14.sp
+                )
+                Text(
+                    text = "Regístrate",
+                    color = CyanAccent,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.clickable { onRegisterClick() }
+                )
+            }
         }
     }
 }
