@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "737708644413",
+    "project_id": "backend-34179",
+    "storage_bucket": "backend-34179.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737708644413:android:f2a0ff02a7c82c72a33254",
+        "android_client_info": {
+          "package_name": "com.example.aprendeaaprender"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB61jJdbpwacOIEQZQCye_IRbHCNhvjG64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
